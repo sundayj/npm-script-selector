@@ -2,18 +2,15 @@
   "name": "npm-script-selector",
   "version": "1.0.4",
   "description": "A command line app for finding and running npm scripts within a project.",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-
-    "build": "tsc",
-    "test": "jasmine",
-    "start": "node ./dist/app.js",
-    "devstart": "npm run build && node ./dist/app.js -f package.json"
+  "author": {
+    "name": "Justin L. Sunday",
+    "email": "admin@jlsunday.com",
+    "url": "https://jlsunday.com"
   },
-  "bin": {
-    "npmss": "dist/app.js"
-  },
+  "homepage": "https://github.com/sundayj/npm-script-selector",
+  "repository": "github:sundayj/npm-script-selector",
+  "bugs": "https://github.com/sundayj/npm-script-selector/issues",
+  "license": "MIT",
   "keywords": [
     "typescript",
     "npm",
@@ -24,8 +21,17 @@
     "dev tool",
     "tool"
   ],
-  "author": "Justin L. Sunday",
-  "license": "ISC",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "jasmine",
+    "start": "node ./dist/app.js",
+    "devstart": "npm run build && node ./dist/app.js -f package.json"
+  },
+  "bin": {
+    "npmss": "dist/app.js"
+  },
   "dependencies": {
     "commander": "^11.1.0",
     "figlet": "^1.6.0",

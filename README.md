@@ -42,3 +42,5 @@ npmss -f path/to/desired/package.json
 ```
 
 Path can be relative to current directory, or absolute.
+
+![Run Screenshot](assets/run-screenshot-20231023.jpg)
