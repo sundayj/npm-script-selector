@@ -1,6 +1,6 @@
 {
   "name": "npm-script-selector",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A command line app for finding and running npm scripts within a project.",
   "author": {
     "name": "Justin L. Sunday",

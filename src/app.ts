@@ -9,7 +9,7 @@ import { exec } from 'child_process';
 
 export const DEFAULTS = {
     ProgramName: 'NPM Script Selector',
-    Version: '1.0.4',
+    Version: '1.0.5',
     Description: 'A CLI for finding npm scripts within a package and allowing a user to run them from the command line.',
     Options: {
         File: {
