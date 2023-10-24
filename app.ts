@@ -7,7 +7,7 @@ import * as figlet from 'figlet';
 import * as fs from 'fs';
 import { select } from '@inquirer/prompts';
 import { confirm } from '@inquirer/prompts';
-import { exec } from 'child_process';
+import { spawn } from 'child_process';
 
 
 class ScriptRunner {
@@ -104,14 +104,24 @@ class ScriptRunner {
     }
 
     private async runScript(scriptName: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            exec(`npm run ${scriptName}`, (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error running script: ${error.message}`);
-                    reject(error);
-                } else {
-                    console.log(`Script output:\n${stdout}`);
+        return new Promise((resolve, reject) => {
+            const child = spawn('npm', [`run ${scriptName}`], {
+                stdio: 'inherit', // This line makes the child process use the same stdio as the parent.
+                shell: true
+            });
+
+            child.on('error', (error) => {
+                console.error(`Error starting script: ${error.message}`);
+                reject(error);
+            });
+
+            child.on('exit', (code, signal) => {
+                if (code === 0) {
+                    console.log(`Script exited successfully.`);
                     resolve();
+                } else {
+                    console.error(`Script exited with code ${code} and signal ${signal}`);
+                    reject(new Error(`Script exited with code ${code} and signal ${signal}`));
                 }
             });
         });
