@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
     "outDir": "dist",
     "strict": true,
     "target": "es6",
     "sourceMap": true,
+    "module": "CommonJS",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
     "typeRoots": [
@@ -15,10 +16,10 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "*": ["src/*"]
+      "*": ["./*"]
     }
   },
   "include": [
-    "src/**/*.ts"
+    "*.ts", "*.js"
   ]
 }

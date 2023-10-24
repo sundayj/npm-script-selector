@@ -1,7 +1,7 @@
 {
   "name": "npm-script-selector",
-  "version": "1.0.5",
-  "description": "A command line app for finding and running npm scripts within a project.",
+  "version": "1.1.0",
+  "description": "A CLI for finding npm scripts within a `package.json` and allowing a user to run them from the command line.",
   "author": {
     "name": "Justin L. Sunday",
     "email": "admin@jlsunday.com",
@@ -21,26 +21,39 @@
     "dev tool",
     "tool"
   ],
-  "main": "index.js",
-  "type": "module",
+  "main": "app.js",
   "scripts": {
     "build": "tsc",
     "test": "jasmine",
-    "start": "node ./dist/app.js",
+    "start": "node ./dist/app.js -f package.json",
     "devstart": "npm run build && node ./dist/app.js -f package.json"
   },
   "bin": {
-    "npmss": "dist/app.js"
+    "npmss": "./dist/app.js"
+  },
+  "config": {
+    "cliOptions": {
+      "file": {
+        "option": "-f, --file <value>",
+        "description": "Path to the package.json."
+      }
+    },
+    "errorMessages": {
+      "filePathArgMissing": "Please provide a path to the package.json file using the -f or --file option.",
+      "fileNotFound": "File not found at:",
+      "noScriptsFound": "No \"scripts\" section found in the package.json file. Did you provide the right package path?",
+      "errorParsingJson": "Error reading or parsing JSON file:"
+    }
   },
   "dependencies": {
+    "@inquirer/confirm": "^2.0.14",
+    "@inquirer/prompts": "^3.2.0",
     "commander": "^11.1.0",
     "figlet": "^1.6.0",
-    "inquirer": "^9.2.11",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/figlet": "^1.5.7",
-    "@types/inquirer": "^9.0.6",
     "@types/jasmine": "^5.1.1",
     "@types/node": "^20.8.7",
     "jasmine": "^5.1.0",
