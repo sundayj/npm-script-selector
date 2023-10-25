@@ -1,7 +1,7 @@
 {
   "name": "npm-script-selector",
-  "version": "1.2.0",
-  "description": "A CLI for finding npm scripts within a `package.json` and allowing a user to run them from the command line.",
+  "version": "1.2.1",
+  "description": "The NPM Script Selector is a CLI tool for discovering and running project scripts within package.json files.",
   "author": {
     "name": "Justin L. Sunday",
     "email": "admin@jlsunday.com",
@@ -28,13 +28,14 @@
   "scripts": {
     "build": "tsc",
     "test": "jasmine",
-    "start": "node ./dist/app.js -f package.json",
-    "devstart": "npm run build && node ./dist/app.js -f package.json"
+    "start": "node ./dist/app.js -h",
+    "devstart": "npm run build && node ./dist/app.js -h"
   },
   "bin": {
     "npmss": "dist/app.js"
   },
   "config": {
+    "scriptName": "npmss",
     "cliOptions": {
       "file": {
         "option": "-f, --file <value>",

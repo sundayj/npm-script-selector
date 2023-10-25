@@ -1,7 +1,7 @@
 ```text
-░█▀█░█▀█░█▄█░░░█▀▀░█▀▀░█▀▄░▀█▀░█▀█░▀█▀░░░█▀▀░█▀▀░█░░░█▀▀░█▀▀░▀█▀░█▀█░█▀▄
-░█░█░█▀▀░█░█░░░▀▀█░█░░░█▀▄░░█░░█▀▀░░█░░░░▀▀█░█▀▀░█░░░█▀▀░█░░░░█░░█░█░█▀▄
-░▀░▀░▀░░░▀░▀░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░░░░▀░░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀
+░█▀█░█▀█░█▄█░░░░░█▀▀░█▀▀░█▀▄░▀█▀░█▀█░▀█▀░░░░░█▀▀░█▀▀░█░░░█▀▀░█▀▀░▀█▀░█▀█░█▀▄
+░█░█░█▀▀░█░█░▄▄▄░▀▀█░█░░░█▀▄░░█░░█▀▀░░█░░▄▄▄░▀▀█░█▀▀░█░░░█▀▀░█░░░░█░░█░█░█▀▄
+░▀░▀░▀░░░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░░░░▀░░░░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀
 ```
 
 # NPM Script Selector
@@ -38,9 +38,25 @@ Install NPM Script Selector with npm:
 To run:
 
 ```bash
-npmss -f path/to/desired/package.json
+> npmss -f path/to/desired/package.json
+```
+
+For Help:
+
+```bash
+> npmss -h
+
+Usage: npmss [options]
+
+A CLI for finding npm scripts within a `package.json` and allowing a user to run them from the command line.
+
+Options:
+  -V, --version       output the version number
+  -f, --file <value>  Path to the package.json.
+  -h, --help          display help for command
+
 ```
 
 Path can be relative to current directory, or absolute.
 
-![Run Screenshot](assets/run-screenshot-20231023.jpg)
+![NPM Script Selector Screenshot 20231025](assets/npm-script-selector-screenshot-20231025.png)

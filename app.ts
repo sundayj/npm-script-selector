@@ -20,6 +20,7 @@ class ScriptRunner {
         this.running = true;
 
         this.program
+            .name('npmss')
             .version(appVersion)
             .description(appDescription)
             .option(appConfig.cliOptions.file.option, appConfig.cliOptions.file.description)
