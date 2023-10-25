@@ -4,6 +4,10 @@
 ░▀░▀░▀░░░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░░░░▀░░░░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀░▀
 ```
 
+**By**: Justin Sunday<br>
+**GitHub**: [sundayj/npm-script-selector](https://github.com/sundayj/npm-script-selector)<br>
+**Website**: [JLSunday.com](https://jlsunday.com)
+
 # NPM Script Selector
 
 The NPM Script Selector is a CLI tool for discovering and running project scripts within `package.json` files. Have you ever worked on a project that contains so many scripts that you can't always remember the available options? That's what happened to me. I currently contribute to a project with 30+ scripts. I became tired of having to open the package file and/or IDE in order to find and run the needed the scripts, so I created this small CLI.
@@ -22,10 +26,10 @@ Uses `figlet`, `commander`, and `inquirer`.
 
 ### Future Features
 
-- [ ]  Allow subcommands/options to be passed to selected scripts.
-- [ ]  Option to search for `package.json` files within a directory.
-- [ ]  Option to store the paths of frequently used files.
-- [ ]  Option to run the selected scripts in a new window.
+- [ ] - Allow subcommands/options to be passed to selected scripts.
+- [ ] - Option to search for `package.json` files within a directory.
+- [ ] - Option to store the paths of frequently used files.
+- [ ] - Option to run the selected scripts in a new window.
 
 ## Installation and Usage
 
