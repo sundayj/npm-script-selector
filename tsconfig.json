@@ -2,12 +2,11 @@
   "compilerOptions": {
     "outDir": "dist",
     "strict": true,
-    "target": "es6",
+    "target": "ES2022",
+    "module": "Node16",
     "sourceMap": true,
-    "module": "CommonJS",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
     "typeRoots": [
       "./node_modules/@types"
     ],

@@ -1,6 +1,6 @@
 {
   "name": "npm-script-selector",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "The NPM Script Selector is a CLI tool for discovering and running project scripts within package.json files.",
   "author": {
     "name": "Justin L. Sunday",
@@ -69,10 +69,13 @@
     "@inquirer/prompts": "^3.2.0",
     "commander": "^11.1.0",
     "figlet": "^1.6.0",
+    "inquirer-autocomplete-standalone": "^0.8.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@tsconfig/node18": "^18.2.2",
     "@types/figlet": "^1.5.7",
+    "@types/inquirer-autocomplete-prompt": "^3.0.3",
     "@types/jasmine": "^5.1.1",
     "@types/node": "^20.8.7",
     "jasmine": "^5.1.0",

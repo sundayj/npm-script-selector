@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
-import { name as appName, version as appVersion, description as appDescription, config as appConfig } from './package.json';
+import {
+    name as appName,
+    version as appVersion,
+    description as appDescription,
+    config as appConfig
+} from './package.json';
 import { Command } from 'commander';
 import * as path from 'path';
 import * as figlet from 'figlet';
 import * as fs from 'fs';
-import { select } from '@inquirer/prompts';
 import { confirm } from '@inquirer/prompts';
 import { spawn } from 'child_process';
 
@@ -75,6 +79,10 @@ class ScriptRunner {
     }
 
     private async selectAndRunScript(): Promise<void> {
+        const { default: autocomplete } = await import(
+            "inquirer-autocomplete-standalone"
+        );
+
         const packageData = JSON.parse(fs.readFileSync(this.absoluteFilePath, 'utf8'));
         const scripts = packageData.scripts;
 
@@ -89,15 +97,20 @@ class ScriptRunner {
         // Change the current working directory to the package directory
         process.chdir(packageDir);
 
-        const choices = Object.entries(scripts).map(([key, value]) => ({name: key, value: value as string, description: value as string}));
+        const choices = Object.entries(scripts)
+            .map(([key, value]) => ({
+                name: key,
+                value: value as string,
+                description: value as string})
+            );
 
         while (this.running) {
-            const answers = await select(
-                {
+            const answers = await autocomplete({
                     message: 'Select a script to run:',
-                    choices
-                },
-            );
+                    source: async (input: string | undefined) => {
+                        return await this.searchScripts(choices, input);
+                    }
+            });
 
             const selectedScript = choices.find(s => s.value == answers);
 
@@ -120,6 +133,32 @@ class ScriptRunner {
                 }
             });
         }
+    }
+
+    private async searchScripts(choices: {
+        name: string;
+        description: string;
+        value: string
+    }[], input: string = ''): Promise<{
+        name: string;
+        description: string;
+        value: string;
+    }[]> {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const results = choices.filter((s) =>
+                    s.name.toLowerCase().includes(input.toLowerCase())
+                );
+
+                const all = results.map((r) => ({
+                    value: r.value,
+                    name: r.name,
+                    description: r.description
+                }));
+
+                resolve(all);
+            }, 300 + 30);
+        });
     }
 
     private async runScript(scriptName: string): Promise<void> {
