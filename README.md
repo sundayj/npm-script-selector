@@ -20,11 +20,11 @@
 ---------------------
 # NPM Script Selector
 
-The NPM Script Selector is a CLI tool for discovering and running project scripts within `package.json` files. Have you ever worked on a project that contains so many scripts that you can't always remember the available options? That's what happened to me. I currently contribute to a project with 30+ scripts. I became tired of having to open the package file and/or IDE in order to find and run the needed the scripts, so I created this small CLI.
+The NPM Script Selector is a CLI tool for discovering and running project scripts within `package.json` files. Have you ever worked on a project that contains so many scripts that you can't always remember the available options? That's what happened to me. I currently contribute to a project with 30+ scripts. I became tired of having to open the package file and/or IDE in order to find and run the needed scripts, so I created this small CLI.
 
 Currently, you provide the path to the `package.json` file, the NPM Script Selector will then list the available scripts for you, where you can interactively select the one you want. It will then run the script for you within the selected project's directory. I plan to add more functionality in the near future.
 
-Uses `figlet`, `commander`, and `inquirer`.
+Uses [`figlet`](https://github.com/patorjk/figlet.js), [`commander`](https://github.com/tj/commander.js), and [`inquirer`](https://github.com/SBoudrias/Inquirer.js).
 
 -------------
 ## Sponsoring
@@ -43,20 +43,24 @@ For feature requests, or bugs, please create an issue [here](https://github.com/
 -----------
 ## Features
 
+- Can be used as entry to other scripts.
 - Accepts path to a `package.json` as an input.
 - Lists scripts contained within that `package.json`.
 - Allows interactive selection of script.
 - Prints output from selected script.
 - Asks if you would like to run another script when the current one is finished.
+- App's title banner is customizable. Customize the font printed to the console when the CLI runs:
+  - Change the words.
+  - Change the font style. Font choices can be found [here](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/53d91777b0daa1b5b6b0beac63ab0b25126b7b13/types/figlet/index.d.ts#L2).
 
 -------------------
 ### Future Features
 
-- [ ] - Allow subcommands/options to be passed to selected scripts.
-- [ ] - Option to search for `package.json` files within a directory.
-- [ ] - Option to store the paths of frequently used files.
-- [ ] - Option to run the selected scripts in a new window.
-- [ ] - React GUI
+- [ ] Allow subcommands/options to be passed to selected scripts.
+- [ ] Option to search for `package.json` files within a directory.
+- [ ] Option to store the paths of frequently used files.
+- [ ] Option to run the selected scripts in a new window.
+- [ ] React GUI
 
 -------------------------
 ## Installation and Usage
@@ -80,12 +84,15 @@ For Help:
 
 Usage: npmss [options]
 
-A CLI for finding npm scripts within a `package.json` and allowing a user to run them from the command line.
+The NPM Script Selector is a CLI tool for discovering and running project scripts within package.json files.
 
 Options:
-  -V, --version       output the version number
-  -f, --file <value>  Path to the package.json.
-  -h, --help          display help for command
+  -V, --version               output the version number
+  -f, --file <value>          Path to the package.json.
+  -b, --banner <value>        Value for the title to be displayed to the user. (Replaces the NPM-Script-Selector banner.)
+  -hb, --hide-banner          Use this flag if you'd like to not display a banner at all.
+  -bf, --banner-font <value>  Pass the name of a font listed here to print the banner in the desired font. https://github.com/DefinitelyTyped/DefinitelyTyped/blob/53d91777b0daa1b5b6b0beac63ab0b25126b7b13/types/figlet/index.d.ts#L2
+  -h, --help                  display help for command
 
 ```
 Path can be relative to current directory, or absolute.

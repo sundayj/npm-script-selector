@@ -1,13 +1,13 @@
 {
   "name": "npm-script-selector",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "The NPM Script Selector is a CLI tool for discovering and running project scripts within package.json files.",
   "author": {
     "name": "Justin L. Sunday",
     "email": "admin@jlsunday.com",
     "url": "https://jlsunday.com"
   },
-  "homepage": "https://github.com/sundayj/npm-script-selector",
+  "homepage": "https://jlsunday.com/npm-script-selector/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sundayj/npm-script-selector.git"
@@ -29,7 +29,10 @@
     "build": "tsc",
     "test": "jasmine",
     "start": "node ./dist/app.js -h",
-    "devstart": "npm run build && node ./dist/app.js -h"
+    "devstart": "npm run build && node ./dist/app.js -h",
+    "devStartWithFile": "npm run build && node ./dist/app.js -f C:\\Users\\justi\\npm-script-selector\\package.json",
+    "devstartHideBanner": "npm run build && node ./dist/app.js -f C:\\Users\\justi\\npm-script-selector\\package.json -hb",
+    "devstartNewBanner": "npm run build && node ./dist/app.js -f C:\\Users\\justi\\npm-script-selector\\package.json -b \"Test Banner\" -bf \"Small\""
   },
   "bin": {
     "npmss": "dist/app.js"
@@ -40,6 +43,18 @@
       "file": {
         "option": "-f, --file <value>",
         "description": "Path to the package.json."
+      },
+      "banner": {
+        "option": "-b, --banner <value>",
+        "description": "Value for the title to be displayed to the user. (Replaces the NPM-Script-Selector banner.)"
+      },
+      "hideBanner": {
+        "option": "-hb, --hide-banner",
+        "description": "Use this flag if you'd like to not display a banner at all."
+      },
+      "bannerFont": {
+        "option": "-bf, --banner-font <value>",
+        "description": "Pass the name of a font listed at the following url to print the banner in the desired font. https://github.com/DefinitelyTyped/DefinitelyTyped/blob/53d91777b0daa1b5b6b0beac63ab0b25126b7b13/types/figlet/index.d.ts#L2"
       }
     },
     "errorMessages": {

@@ -14,6 +14,11 @@ class ScriptRunner {
     running: boolean;
     program: Command;
     absoluteFilePath: string;
+    banner: string;
+    hideBanner: boolean;
+    bannerFont: figlet.Options;
+
+    defaultFont: figlet.Fonts = 'Pagga';
 
     constructor() {
         this.program = new Command();
@@ -24,10 +29,16 @@ class ScriptRunner {
             .version(appVersion)
             .description(appDescription)
             .option(appConfig.cliOptions.file.option, appConfig.cliOptions.file.description)
+            .option(appConfig.cliOptions.banner.option, appConfig.cliOptions.banner.description)
+            .option(appConfig.cliOptions.hideBanner.option, appConfig.cliOptions.hideBanner.description)
+            .option(appConfig.cliOptions.bannerFont.option, appConfig.cliOptions.bannerFont.description)
             .parse(process.argv);
 
         const options = this.program.opts();
         const filePath = options.file;
+        const banner = options.banner;
+        const hideBanner = options.hideBanner;
+        const bannerFont = options.bannerFont;
 
         if (!this.running) {
             process.exit(1);
@@ -39,11 +50,18 @@ class ScriptRunner {
 
         // Resolve the absolute path to the file
         this.absoluteFilePath = path.resolve(filePath);
+        this.banner = banner ?? appName;
+        this.hideBanner = !!hideBanner;
+        this.bannerFont = {
+            font: bannerFont ?? this.defaultFont
+        };
     }
 
     public async runProgram(): Promise<void> {
-        console.log(figlet.textSync(appName, { font: 'Pagga' }));
-        console.log(); // Put some spacing between the title and output
+        if (!this.hideBanner) {
+            console.log(figlet.textSync(this.banner, this.bannerFont));
+            console.log(); // Put some spacing between the title and output
+        }
 
         if (!fs.existsSync(this.absoluteFilePath)) {
             this.running = false;
@@ -132,6 +150,7 @@ class ScriptRunner {
 
 try {
     const runner = new ScriptRunner();
+    // noinspection JSIgnoredPromiseFromCall
     runner.runProgram();
 }
 catch (e) {
