@@ -35,7 +35,8 @@
     "devstartNewBanner": "npm run build && node ./dist/app.js -f C:\\Users\\justi\\npm-script-selector\\package.json -b \"Test Banner\" -bf \"Small\""
   },
   "bin": {
-    "npmss": "dist/app.js"
+    "npmss": "dist/app.js",
+    "npm-script-selector": "dist/app.js"
   },
   "config": {
     "scriptName": "npmss",
@@ -61,7 +62,9 @@
       "filePathArgMissing": "Please provide a path to the package.json file using the -f or --file option.",
       "fileNotFound": "File not found at:",
       "noScriptsFound": "No \"scripts\" section found in the package.json file. Did you provide the right package path?",
-      "errorParsingJson": "Error reading or parsing JSON file:"
+      "errorParsingJson": "Error reading or parsing JSON file:",
+      "noPackageJsonFound": "No package.json found in the current directory or any parent directories.",
+      "useNpmssCommand": "Please use 'npmss' instead of 'npm-script-selector' to run this tool."
     }
   },
   "dependencies": {

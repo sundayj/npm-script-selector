@@ -44,7 +44,8 @@ For feature requests, or bugs, please create an issue [here](https://github.com/
 ## Features
 
 - Can be used as entry to other scripts.
-- Accepts path to a `package.json` as an input.
+- Accepts path to a `package.json` as an input, or automatically finds the nearest one if not provided.
+- Automatically searches for the nearest `package.json` file when no path is specified (walks up directory tree).
 - Lists scripts contained within that `package.json`.
 - Allows interactive selection of script.
 - Prints output from selected script.
@@ -74,8 +75,14 @@ Install NPM Script Selector with npm:
 To run:
 
 ```bash
+# With a specific package.json path
 > npmss -f path/to/desired/package.json
+
+# Or let it auto-find the nearest package.json
+> npmss
 ```
+
+**Note**: The tool can be invoked as either `npmss` (recommended) or `npm-script-selector`. If you use `npm-script-selector`, the tool will display help information and remind you to use `npmss` instead.
 
 For Help:
 
@@ -88,13 +95,14 @@ The NPM Script Selector is a CLI tool for discovering and running project script
 
 Options:
   -V, --version               output the version number
-  -f, --file <value>          Path to the package.json.
+  -f, --file <value>          Path to the package.json. (Optional - will auto-find nearest if not provided)
   -b, --banner <value>        Value for the title to be displayed to the user. (Replaces the NPM-Script-Selector banner.)
   -hb, --hide-banner          Use this flag if you'd like to not display a banner at all.
   -bf, --banner-font <value>  Pass the name of a font listed here to print the banner in the desired font. https://github.com/DefinitelyTyped/DefinitelyTyped/blob/53d91777b0daa1b5b6b0beac63ab0b25126b7b13/types/figlet/index.d.ts#L2
   -h, --help                  display help for command
 
 ```
+When the `-f` option is not provided, the tool will automatically search for the nearest `package.json` file by traversing up the directory tree from your current working directory.
 Path can be relative to current directory, or absolute.
 
 ![NPM Script Selector Screenshot 20231025](assets/npm-script-selector-screenshot-20231025.png)

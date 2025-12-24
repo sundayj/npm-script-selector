@@ -24,9 +24,40 @@ class ScriptRunner {
 
     defaultFont: figlet.Fonts = 'Pagga';
 
+    /**
+     * Find the nearest package.json file by traversing up the directory tree
+     */
+    private findNearestPackageJson(): string | null {
+        let currentDir = process.cwd();
+        const root = path.parse(currentDir).root;
+
+        while (currentDir !== root) {
+            const packageJsonPath = path.join(currentDir, 'package.json');
+            if (fs.existsSync(packageJsonPath)) {
+                return packageJsonPath;
+            }
+            currentDir = path.dirname(currentDir);
+        }
+
+        // Check the root directory as well
+        const rootPackageJson = path.join(root, 'package.json');
+        if (fs.existsSync(rootPackageJson)) {
+            return rootPackageJson;
+        }
+
+        return null;
+    }
+
     constructor() {
         this.program = new Command();
         this.running = true;
+
+        // Check if the tool was invoked with 'npm-script-selector'
+        const scriptName = path.basename(process.argv[1] || '', '.js');
+        if (scriptName === 'npm-script-selector') {
+            console.log(appConfig.errorMessages.useNpmssCommand);
+            console.log();
+        }
 
         this.program
             .name('npmss')
@@ -39,7 +70,7 @@ class ScriptRunner {
             .parse(process.argv);
 
         const options = this.program.opts();
-        const filePath = options.file;
+        let filePath = options.file;
         const banner = options.banner;
         const hideBanner = options.hideBanner;
         const bannerFont = options.bannerFont;
@@ -47,9 +78,22 @@ class ScriptRunner {
         if (!this.running) {
             process.exit(1);
         }
+
+        // If npm-script-selector was used, display help and exit
+        if (scriptName === 'npm-script-selector') {
+            this.program.help();
+        }
+
+        // If no file path provided, try to find the nearest package.json
         if (!filePath) {
-            console.error(appConfig.errorMessages.filePathArgMissing);
-            process.exit(1);
+            const nearestPackageJson = this.findNearestPackageJson();
+            if (nearestPackageJson) {
+                filePath = nearestPackageJson;
+                console.log(`Using package.json found at: ${nearestPackageJson}`);
+            } else {
+                console.error(appConfig.errorMessages.noPackageJsonFound);
+                process.exit(1);
+            }
         }
 
         // Resolve the absolute path to the file
